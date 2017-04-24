@@ -7,12 +7,9 @@ import com.carl.interesting.common.ServiceResult;
 import com.carl.interesting.common.constants.KeyConstant;
 import com.carl.interesting.common.constants.LanguageKeys;
 import com.carl.interesting.common.constants.ResponseFrontEndErrorCode;
-import com.carl.interesting.common.i18n.entity.InterestingI18n;
 import com.carl.interesting.common.session.CustomSessionManagement;
 import com.carl.interesting.common.util.ConfigHelper;
 import com.carl.interesting.user.service.UserServiceImpl;
-
-import net.sf.json.JSONObject;
 
 /**
  * login service
@@ -75,36 +72,6 @@ public class LoginServiceImpl {
             flag = true;
         }
         return flag;
-    }
-    
-    public JSONObject login(List<String> ipValue, String username,
-            String password, String language) {
-        UserServiceImpl userService = UserServiceImpl.getInstance();
-        boolean flag = userService.validUser(username, password);
-        JSONObject jsonObj = new JSONObject();
-        JSONObject jsonObject = new JSONObject();
-        InterestingI18n i18n = new InterestingI18n(language);
-        if (!flag) {
-            // 返回错误信息：用户名或者密码不正确！
-            jsonObject.put("message",
-                    i18n.getString(
-                            LanguageKeys.LOGIN_LOGIN_FUNC_USERNAME_PASSWORD_INCORRECT));
-            jsonObject.put("code",
-                    ResponseFrontEndErrorCode.USERNAME_OR_PASSWORD_INCORRECT);
-            // jsonObject=Responese
-            jsonObj.put("result", false);
-            jsonObj.put("error", jsonObject);
-        }
-        else {
-            limitMultiUserLogin(username, ipValue);
-            CustomSessionManagement.getInstance().setLanguage(ipValue.get(0),
-                    language);
-            jsonObject.put("message", "");
-            jsonObject.put("expiring", false);
-            jsonObj.put("result", true);
-            jsonObj.put("data", jsonObject);
-        }
-        return jsonObj;
     }
     
     /**

@@ -1,4 +1,3 @@
-
 package com.carl.interesting;
 
 import java.io.File;
@@ -14,8 +13,8 @@ import java.nio.file.StandardOpenOption;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.carl.interesting.common.constants.KeyConstant;
 import com.carl.interesting.common.util.LogUtil;
-
 
 /**
  * Entry for stopping ING
@@ -38,9 +37,9 @@ public class StopINGServer {
         LOG.info("Stop ING server");
         FileChannel fileChannel = null;
         try {
-            File file = new File(MessageTask.MEMORY_MAP_FILE);
+            File file = new File(KeyConstant.MICROSERVICE_PROCESS_RUN_LOG);
             boolean isExist = file.exists();
-            Path path = Paths.get(MessageTask.MEMORY_MAP_FILE);
+            Path path = Paths.get(KeyConstant.MICROSERVICE_PROCESS_RUN_LOG);
             fileChannel = FileChannel.open(path,
                     StandardOpenOption.WRITE,
                     StandardOpenOption.READ);

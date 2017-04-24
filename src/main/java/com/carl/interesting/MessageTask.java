@@ -12,6 +12,7 @@ import java.nio.file.StandardOpenOption;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.carl.interesting.common.constants.KeyConstant;
 import com.carl.interesting.common.util.LogUtil;
 
 /**
@@ -26,7 +27,7 @@ public class MessageTask extends Thread {
     /**
      * Memory map file for communicating with interesting
      */
-    public static final String MEMORY_MAP_FILE = "/tmp/interesting_communication";
+    private String MEMORY_MAP_FILE = KeyConstant.MICROSERVICE_PROCESS_RUN_LOG;
     
     /**
      * Receive the stop message

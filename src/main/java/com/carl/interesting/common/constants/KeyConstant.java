@@ -19,12 +19,17 @@ public class KeyConstant {
     /**
      * MircoService host IP
      */
-    public static final String HOST = ConfigHelper.get("host");
+    public static final String MICROSERVICE_HOST = ConfigHelper
+            .get("microservice.host");
+    
+    public static final String MICROSERVICE_PROCESS_RUN_LOG = ConfigHelper
+            .get("microservice.process.run.log");
     
     /**
      * MircoService server port
      */
-    public static final String SERVER_PORT = ConfigHelper.get("server.port");
+    public static final String MICROSERVICE_PORT = ConfigHelper
+            .get("microservice.port");
     
     public static final String USERNAME = ConfigHelper.get("username");
     

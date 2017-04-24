@@ -75,7 +75,7 @@ public class StartINGServer {
         LOG.info("Start ING server");
         switch (args.length) {
             case 0:
-                LOG.info("The default port " + PORT + " will be used.");
+                // LOG.info("The default port " + PORT + " will be used.");
                 break;
             case 1:
                 PORT = Integer.parseInt(args[0]);
@@ -125,8 +125,8 @@ public class StartINGServer {
      * @see [class,class#method,class#member]
      */
     private static void initServer() throws IOException {
-        BASE = KeyConstant.HOST;
-        PORT = Integer.parseInt(KeyConstant.SERVER_PORT);
+        BASE = KeyConstant.MICROSERVICE_HOST;
+        PORT = Integer.parseInt(KeyConstant.MICROSERVICE_PORT);
         Thread messageThread = new MessageTask();
         messageThread.setName("messageThread");
         messageThread.start();
