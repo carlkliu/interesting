@@ -15,7 +15,7 @@ import net.sf.json.JSONObject;
 /**
  * Scheduler for handling session GC
  * 
- * @author xupingzheng
+ * @author Carl Liu
  * @version [version, 3 Aug 2016]
  * @see [about class/method]
  * @since [product/module version]
@@ -24,7 +24,7 @@ public class SessionScheduler {
     private static final Log LOG = LogFactory.getLog(SessionScheduler.class);
     
     /**
-     * 程序启动时启动此定时器
+     * start scheduler
      * 
      * @return void [explain return type]
      * @exception throws [exception type] [explain exception]

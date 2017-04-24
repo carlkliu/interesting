@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * login information cache class
+ * login information cache
  * 
- * @author Yangbin Zhang
+ * @author Carl Liu
  * @version [version, 3 Aug 2016]
  * @see [about class/method]
  * @since [product/module version]

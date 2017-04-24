@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 import org.apache.commons.logging.Log;
 
 /**
- * log util class
+ * log utility class
  * 
  * @author Carl Liu
  * @version [version, 21 Jul 2016]

@@ -3,7 +3,7 @@ package com.carl.interesting.common.constants;
 /**
  * Constant for ING
  * 
- * @author xupingzheng
+ * @author Carl Liu
  * @version [version, 1 Aug 2016]
  * @see [about class/method]
  * @since [product/module version]

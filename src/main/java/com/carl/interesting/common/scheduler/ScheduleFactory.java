@@ -11,7 +11,7 @@ import com.carl.interesting.common.constants.KeyConstant;
 /**
  * Scheduler Factory: used to create a scheduler
  * 
- * @author Pingzheng Xu
+ * @author Carl Liu
  * @version [version, Nov 17, 2014]
  * @see [about class/method]
  * @since [product/module version]

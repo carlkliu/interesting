@@ -12,7 +12,7 @@ import com.carl.interesting.common.scheduler.NameJob;
 /**
  * Job for handling HTTP request session GC
  * 
- * @author xupingzheng
+ * @author Carl Liu
  * @version [version, 12 Aug 2016]
  * @see [about class/method]
  * @since [product/module version]

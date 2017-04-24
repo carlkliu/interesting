@@ -19,9 +19,9 @@ import com.carl.interesting.login.service.LoginServiceImpl;
 import net.sf.json.JSONObject;
 
 /**
- * userlogin Resource (exposed at "userlogin" path)
+ * login action
  * 
- * @author Yangbin Zhang
+ * @author Carl Liu
  * @version [version, 1 Aug 2016]
  * @see [about class/method]
  * @since [product/module version]

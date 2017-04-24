@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 /**
- * IP address util class
+ * IP address utility class
  * 
  * @author Carl Liu
  * @version [version, Sep 21, 2016]

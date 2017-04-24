@@ -26,12 +26,11 @@ import com.carl.interesting.common.i18n.entity.InterestingI18n;
 import com.carl.interesting.common.session.CustomSessionManagement;
 import com.carl.interesting.common.util.LogUtil;
 
-
 /**
  * HTTP response filter
  * 
  * @author Jiaqi Yang
- * @version [version, 2016年9月1日]
+ * @version [version, 1 Jan. 2016]
  * @see [about class/method]
  * @since [product/module version]
  */
@@ -69,12 +68,10 @@ public class ResponseFilter implements ContainerResponseFilter {
                         responseContext.getHeaders().putSingle("Content-Type",
                                 "text/html;charset=UTF-8");
                     }
-                    if (String
-                            .valueOf(
-                                    ResponseFrontEndErrorCode.USER_LOGIN_OTHER_PLACE)
+                    if (String.valueOf(ResponseFrontEndErrorCode.USER_LOGINED)
                             .equals(valid)) {
                         responseContext.setEntity(ResponseDataFormat
-                                .error(ResponseFrontEndErrorCode.USER_LOGIN_OTHER_PLACE,
+                                .error(ResponseFrontEndErrorCode.USER_LOGINED,
                                         i18n.getString(
                                                 LanguageKeys.COMMON_COMMON_FUNC_USER_LOGGED))
                                 .toString());
@@ -97,6 +94,6 @@ public class ResponseFilter implements ContainerResponseFilter {
         // NOTE: we need unbind task from current thread when http thread exit,
         // because thread pool reuse thread in order to avoid assign the old
         // previous task,we need clean the current thread data cache.
-//        TaskService.INSTANCE.unbindCurrent();
+        // TaskService.INSTANCE.unbindCurrent();
     }
 }

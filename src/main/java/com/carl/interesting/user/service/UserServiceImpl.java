@@ -3,24 +3,14 @@ package com.carl.interesting.user.service;
 import com.carl.interesting.common.constants.KeyConstant;
 
 /**
- * User management
+ * user service
  * 
- * @author Yangbin Zhang
+ * @author Carl Liu
  * @version [version, 1 Aug 2016]
  * @see [about class/method]
  * @since [product/module version]
  */
 public class UserServiceImpl {
-    /**
-     * 校验用户信息
-     * 
-     * @param userName
-     * @param password
-     * @return [explain parameter]
-     * @return boolean [explain return type]
-     * @exception throws [exception type] [explain exception]
-     * @see [class,class#method,class#member]
-     */
     private static UserServiceImpl userServiceImpl;
     
     private UserServiceImpl() {
@@ -28,9 +18,7 @@ public class UserServiceImpl {
     
     public boolean validUser(String userName, String password) {
         boolean flag = false;
-        // 获取配置文件用户名
         String username = KeyConstant.USERNAME;
-        // 获取配置文件用户密码
         String pwd = KeyConstant.PASSWORD;
         if (password.equals(pwd) && userName.equals(username)) {
             flag = true;

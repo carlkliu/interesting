@@ -23,7 +23,7 @@ import net.sf.json.JSONObject;
 /**
  * To create scheduler job
  * 
- * @author Pingzheng Xu
+ * @author Carl Liu
  * @version [version, Jul 18, 2015]
  * @see [about class/method]
  * @since [product/module version]

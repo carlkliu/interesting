@@ -9,9 +9,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * Property file util class
+ * Property file utility
  * 
- * @author Tianbao Liu
+ * @author Carl Liu
  * @version [version, 21 Jul 2016]
  * @see [about class/method]
  * @since [product/module version]

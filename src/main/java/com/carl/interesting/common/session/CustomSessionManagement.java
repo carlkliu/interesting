@@ -15,7 +15,7 @@ import com.carl.interesting.login.service.LoginInfoCache;
 /**
  * custom session management class
  * 
- * @author Tianbao Liu
+ * @author Carl Liu
  * @version [version, 8 Aug 2016]
  * @see [about class/method]
  * @since [product/module version]
@@ -179,7 +179,7 @@ public class CustomSessionManagement {
                 }
             }
             else {
-                flag = ResponseFrontEndErrorCode.USER_LOGIN_OTHER_PLACE;
+                flag = ResponseFrontEndErrorCode.USER_LOGINED;
             }
         }
         return flag;

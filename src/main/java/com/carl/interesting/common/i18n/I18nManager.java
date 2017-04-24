@@ -7,9 +7,9 @@ import com.carl.interesting.common.i18n.entity.InterestingI18n;
 import com.carl.interesting.common.session.CustomSessionManagement;
 
 /**
- * <Simple feature description > <Detailed feature description>
+ * I18n management
  * 
- * @author zhangjie
+ * @author Carl Liu
  * @version [version, 12 Aug 2016]
  * @see [about class/method]
  * @since [product/module version]

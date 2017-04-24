@@ -20,7 +20,7 @@ import com.carl.interesting.common.util.ConfigHelper;
 /**
  * database opertion class
  * 
- * @author Tianbao Liu
+ * @author Carl Liu
  * @version [version, 22 Jul 2016]
  * @see [about class/method]
  * @since [product/module version]
@@ -123,18 +123,6 @@ public class DBAccess {
         conn = null;
     }
     
-    /**
-     * 该方法用于插入新的记录
-     * 
-     * @param tableName 表名
-     * @param columns 列名以一个String[]传入
-     * @param values 参数以Object[]传入. 参数传入前需用Integer.valueOf(int)将int转换为Integer，
-     * 用new Timestamp(calendar.getTimeInMillis())将Calendar转换为Timestamp，
-     * Date将会自动转换为Timestamp
-     * @param autoKey 是否获取自动生成的键
-     * @return 自动生成的键
-     * @throws Exception 数据库操作例外
-     */
     public long insert(String tableName, String[] columns, Object[] values,
             boolean autoKey) throws SQLException, InstantiationException,
             IllegalAccessException {
@@ -201,18 +189,6 @@ public class DBAccess {
         return result;
     }
     
-    /**
-     * 该方法用于插入新的记录
-     * 
-     * @param tableName 表名
-     * @param columns 列名以一个String传入
-     * @param values 参数以Object[]传入. 参数传入前需用Integer.valueOf(int)将int转换为Integer，
-     * 用new Timestamp(calendar.getTimeInMillis())将Calendar转换为Timestamp，
-     * Date将会自动转换为Timestamp
-     * @param autoKey 是否获取自动生成的键
-     * @return 自动生成的键
-     * @throws Exception 数据库操作例外
-     */
     public long insert(String tableName, String commaSepColStr, Object[] values,
             boolean autoKey) throws SQLException, InstantiationException,
             IllegalAccessException {
@@ -269,15 +245,6 @@ public class DBAccess {
         return result;
     }
     
-    /**
-     * 该方法用于插入新的记录
-     * 
-     * @param sql 用户插入的插入语句
-     * @param parameters 以Object[]方式插入数据库的值
-     * @param autoKey 是否获取自动生成的键
-     * @return 自动生成的键
-     * @throws Exception 数据库操作例外
-     */
     public long insert(String sql, Object[] parameters, boolean autoKey)
             throws SQLException, InstantiationException,
             IllegalAccessException {
@@ -322,17 +289,6 @@ public class DBAccess {
         return result;
     }
     
-    /**
-     * 该方法用与条件删除数据表中的记录
-     * 
-     * @param tableName 数据表名
-     * @param colName1 条件一，列名
-     * @param colValue1 条件一，值
-     * @param colName2 条件二，列名
-     * @param colValue2 条件二，值
-     * @return 被删除的记录个数
-     * @throws Exception
-     */
     public int delete(String tableName, String colName1, Object colValue1,
             String colName2, Object colValue2) throws SQLException,
             InstantiationException, IllegalAccessException {
@@ -360,15 +316,6 @@ public class DBAccess {
         return rowsAffected;
     }
     
-    /**
-     * 该方法用单个条件删除数据表中的记录
-     * 
-     * @param tableName 数据表名
-     * @param colName 列名
-     * @param colValue 值
-     * @return 被删除的记录个数
-     * @throws Exception 数据库操作例外
-     */
     public int delete(String tableName, String colName, Object colValue)
             throws SQLException, InstantiationException,
             IllegalAccessException {
@@ -392,14 +339,6 @@ public class DBAccess {
         return rowsAffected;
     }
     
-    /**
-     * 该方法提供用户自定义删除操作
-     * 
-     * @param sql 用户自定义的删除语句
-     * @param parameters 语句中各条件的值
-     * @return 被删除的记录个数。
-     * @throws Exception 数据库操作例外
-     */
     public int delete(String sql, Object[] parameters) throws SQLException,
             InstantiationException, IllegalAccessException {
         PreparedStatement pstmt = null;
@@ -429,51 +368,17 @@ public class DBAccess {
         return rowsAffected;
     }
     
-    /**
-     * 该方法根据id更新记录的数据
-     * 
-     * @param tableName 表名
-     * @param id 主键值
-     * @param columns 列名以一个Object[]传入
-     * @param values 参数以Object[]传入. 参数传入前需用Integer.valueOf(int)将int转换为Integer，
-     * 用new Timestamp(calendar.getTimeInMillis())将Calendar转换为Timestamp，
-     * Date将会自动转换为Timestamp
-     * @throws Exception 数据库操作例外
-     */
     public int update(String tableName, long id, String[] columns,
             Object[] values) throws SQLException, InstantiationException,
             IllegalAccessException {
         return update(tableName, "id", id, columns, values, null);
     }
     
-    /**
-     * 该方法根据id更新记录的数据
-     * 
-     * @param tableName 数据表名
-     * @param id 主键值
-     * @param columns 用于更新的列名
-     * @param values 用于更新的列名值
-     * @param excludeCol 用于忽略的列名，没有则为null
-     * @return 被更新的记录数
-     * @throws Exception 数据库操作例外
-     */
     public int update(String tableName, long id, String[] columns,
             Object[] values, String excludeCol) throws Exception {
         return update(tableName, "id", id, columns, values, excludeCol);
     }
     
-    /**
-     * 该方法根据单个条件更新记录的数据
-     * 
-     * @param tableName 数据表名
-     * @param keyName 用于检索的列名
-     * @param keyValue 用于检索的列名值
-     * @param columns 用于更新的列名
-     * @param values 用于更新的列名值
-     * @param excludeCol 用于忽略的列名，没有则为null
-     * @return 被更新的记录数
-     * @throws Exception 数据库操作例外
-     */
     public int update(String tableName, String keyName, Object keyValue,
             String[] columns, Object[] values, String excludeCol)
             throws SQLException, InstantiationException,
@@ -528,17 +433,6 @@ public class DBAccess {
         return rowsAffected;
     }
     
-    /**
-     * 该方法提供用户自定义的更新操作
-     * 
-     * @param sql 增删改语句，where子句中用IS Null判断NULL 或使用安全比较<=>
-     * @param parameters 参数以Object[]传入.
-     * 参数传入前需用Integer.valueOf(int)将int转换为Integer， 用new
-     * Timestamp(calendar.getTimeInMillis())将Calendar转换为Timestamp，
-     * Date将会自动转换为Timestamp
-     * @return 被更新的记录个数
-     * @throws Exception 数据库操作例外
-     */
     public int update(String sql, Object[] parameters) throws SQLException,
             InstantiationException, IllegalAccessException {
         PreparedStatement pstmt = null;
@@ -568,14 +462,6 @@ public class DBAccess {
         return rowsAffected;
     }
     
-    /**
-     * 该方法提供用户自定义更新操作
-     * 
-     * @param sql 增删改语句，where子句中用IS Null判断NULL 或使用安全比较<=>
-     * @param keyValue 用于更新的值
-     * @return 被更新的记录个数
-     * @throws Exception 数据库操作例外
-     */
     public int update(String sql, long keyValue) throws SQLException,
             InstantiationException, IllegalAccessException {
         PreparedStatement pstmt = null;
@@ -592,14 +478,6 @@ public class DBAccess {
         return rowsAffected;
     }
     
-    /**
-     * 该方法用于将一系列sql提交给数据库执行。
-     * 
-     * @param sqlArr 要执行的sql语句以String[]传入
-     * @return 每条语句的受影响行数
-     * 未知行数返回Statement.SUCCESS_NO_INFO，执行失败返回Statement.EXECUTE_FAILED
-     * @throws Exception 数据库操作例外
-     */
     public int[] batch(String[] sqlArr) throws SQLException,
             InstantiationException, IllegalAccessException {
         Statement stmt = null;
@@ -618,15 +496,6 @@ public class DBAccess {
         return rowsAffected;
     }
     
-    /**
-     * 该方法用于将一系列sql语句提交给数据库执行，并提供相应的参数。
-     * 
-     * @param sql 一条带参数的sql语句
-     * @param parameters 不同的参数组，以Object[][]传入
-     * @return 不同参数的受影响行数
-     * 未知行数返回Statement.SUCCESS_NO_INFO，执行失败返回Statement.EXECUTE_FAILED
-     * @throws Exception 数据库操作例外
-     */
     public int[] batch(String sql, Object[][] parametersArr)
             throws SQLException, InstantiationException,
             IllegalAccessException {
@@ -662,15 +531,6 @@ public class DBAccess {
         return rowsAffected;
     }
     
-    /**
-     * 该方法执行一系列相同的sql语句，这些语句具有相同的sameParameters参数，不同的参数为parametersList
-     * 
-     * @param sql 用户自定义的sql语句
-     * @param parametersList 各个sql语句不通的参数集合
-     * @param sameParameters 各个sql语句相同的参数集合
-     * @return 数据库受影响的行数
-     * @throws Exception 数据库操作例外
-     */
     public int[] batch(String sql, ArrayList<Object[]> parametersList,
             Object[] sameParameters) throws SQLException,
             InstantiationException, IllegalAccessException {
@@ -712,16 +572,6 @@ public class DBAccess {
         return rowsAffected;
     }
     
-    /**
-     * 该方法执行数据库存储过程
-     * 
-     * @param procedureName 存储过程名
-     * @param parameters 参数以Object[]传入.
-     * 参数传入前需用Integer.valueOf(int)将int转换为Integer， 用new
-     * Timestamp(calendar.getTimeInMillis())将Calendar转换为Timestamp，
-     * Date将会自动转换为Timestamp 如果存储过程的第i个参数是OUT，则parameters[i]为null，将用于保存返回值
-     * @throws Exception 数据库操作例外
-     */
     public Object[] call(String procedureName, Object[] parameters)
             throws SQLException, InstantiationException,
             IllegalAccessException {
@@ -773,17 +623,6 @@ public class DBAccess {
         }
     }
     
-    /**
-     * 调用存储过程并返回结果集
-     * 
-     * @param procedureName 存储过程名
-     * @param parameters 参数以Object[]传入.
-     * 参数传入前需用Integer.valueOf(int)将int转换为Integer， 用new
-     * Timestamp(calendar.getTimeInMillis())将Calendar转换为Timestamp，
-     * Date将会自动转换为Timestamp 如果存储过程的第i个参数是OUT，则parameters[i]为null，将用于保存返回值
-     * @return Object 经过extractorClass处理后的结果集
-     * @throws Exception 数据库操作例外
-     */
     public ArrayList<Object> call(String procedureName, Object[] parameters,
             Class<?> extractorClass) throws SQLException,
             InstantiationException, IllegalAccessException {
@@ -838,8 +677,6 @@ public class DBAccess {
                 else if (extractorClass == ResultSet2Map.class)
                     obj = rs2Map.populate(rs);
                 else {
-                    // 如果extractor.populate(rs)返回this，则每一个rs都创建新的extractor实例来转储；
-                    // 如果extractor.populate(rs)返回新的对象，则总是用一个extractor为每一个rs作转储
                     if (extractor == null || obj == extractor)
                         extractor = (ResultSetExtractable) extractorClass
                                 .newInstance();
@@ -857,35 +694,12 @@ public class DBAccess {
         return records;
     }
     
-    /**
-     * 该方法提供根据id查找相应的记录
-     * 
-     * @param tableName 表名
-     * @param id 主键值
-     * @param columns 表的列名数组,不能为null
-     * @param extractorClass 实现了ResultSetExtractable接口的数据提取操作类，
-     * 用于将ResultSet转储到自身（其populate方法返回this ），或转储到其他类型的对象（如ResultSet2Array）
-     * @return 数据存在则返回Object，否则返回null
-     * @throws Exception 数据库操作例外
-     */
     public Object find(String tableName, long id, String[] columns,
             Class<?> extractorClass) throws SQLException,
             InstantiationException, IllegalAccessException {
         return find(tableName, "id", Long.valueOf(id), columns, extractorClass);
     }
     
-    /**
-     * 该方法提供根据一个列名查找相应的记录
-     * 
-     * @param tableName 表名
-     * @param keyName 列名
-     * @param keyValue 列名值
-     * @param columns 要查找的列
-     * @param extractorClass 实现了ResultSetExtractable接口的数据提取操作类，
-     * 用于将ResultSet转储到自身（其populate方法返回this ），或转储到其他类型的对象（如ResultSet2Array）
-     * @return 返回结果对象，不存在返回null
-     * @throws Exception 数据库操作例外
-     */
     public Object find(String tableName, String keyName, Object keyValue,
             String[] columns, Class<?> extractorClass) throws SQLException,
             InstantiationException, IllegalAccessException {
@@ -933,17 +747,6 @@ public class DBAccess {
         return result;
     }
     
-    /**
-     * 该方法提供根据id查找相应的记录
-     * 
-     * @param tableName 表名
-     * @param id 主键值
-     * @param commaSepColStr 表的列名数组,不能为null
-     * @param extractorClass 实现了ResultSetExtractable接口的数据提取操作类，
-     * 用于将ResultSet转储到自身（其populate方法返回this ），或转储到其他类型的对象（如ResultSet2Array）
-     * @return 数据存在则返回Object，否则返回null
-     * @throws Exception 数据库操作例外
-     */
     public Object find(String tableName, long id, String commaSepColStr,
             Class<?> extractorClass) throws SQLException,
             InstantiationException, IllegalAccessException {
@@ -954,18 +757,6 @@ public class DBAccess {
                 extractorClass);
     }
     
-    /**
-     * 该方法提供根据一个列名查找相应的记录
-     * 
-     * @param tableName 表名
-     * @param keyName 列名
-     * @param keyValue 列名值
-     * @param commaSepColStr 要查找的列
-     * @param extractorClass 实现了ResultSetExtractable接口的数据提取操作类，
-     * 用于将ResultSet转储到自身（其populate方法返回this ），或转储到其他类型的对象（如ResultSet2Array）
-     * @return 返回结果对象，不存在返回null
-     * @throws Exception 数据库操作例外
-     */
     public Object find(String tableName, String keyName, Object keyValue,
             String commaSepColStr, Class<?> extractorClass) throws SQLException,
             InstantiationException, IllegalAccessException {
@@ -1006,18 +797,6 @@ public class DBAccess {
         return result;
     }
     
-    /**
-     * 该方法提供用户自定义查询sql语句，多参数
-     * 
-     * @param sql 查询语句
-     * @param parameters 参数以Object[]传入，每个参数都不能为null.
-     * 参数传入前需用Integer.valueOf(int)将int转换为Integer， 用new Timestamp(calendar
-     * .getTimeInMillis())将Calendar转换为Timestamp，Date将会自动转换为Timestamp
-     * @param extractorClass 实现了ResultSetExtractable接口的数据提取操作类，
-     * 用于将ResultSet转储到自身（其populate方法返回this ），或转储到其他类型的对象（如ResultSet2Array）
-     * @return 返回结果用Object保存
-     * @throws Exception 数据库操作例外
-     */
     public Object find(String sql, Object[] parameters, Class<?> extractorClass)
             throws SQLException, InstantiationException,
             IllegalAccessException {
@@ -1062,18 +841,6 @@ public class DBAccess {
         return result;
     }
     
-    /**
-     * 该方法提供用户自定义查询sql语句，单个参数
-     * 
-     * @param sql 查询语句
-     * @param keyValue 参数以long类型传入， 用new
-     * Timestamp(calendar.getTimeInMillis())将Calendar转换为Timestamp
-     * ，Date将会自动转换为Timestamp
-     * @param extractorClass 实现了ResultSetExtractable接口的数据提取操作类，
-     * 用于将ResultSet转储到自身（其populate方法返回this ），或转储到其他类型的对象（如ResultSet2Array）
-     * @return 返回结果用Object保存
-     * @throws Exception 数据库操作例外
-     */
     public Object find(String sql, long keyValue, Class<?> extractorClass)
             throws SQLException, InstantiationException,
             IllegalAccessException {
@@ -1105,20 +872,6 @@ public class DBAccess {
         return result;
     }
     
-    /**
-     * 该方法提供具有便宜值和上界的自定义查询语句，并需要提供相应的参数。
-     * 
-     * @param sql 查询语句
-     * @param parameters 参数以Object[]传入，每个参数都不能为null.
-     * 参数传入前需用Integer.valueOf(int)将int转换为Integer， 用new Timestamp(calendar
-     * .getTimeInMillis())将Calendar转换为Timestamp，Date将会自动转换为Timestamp
-     * @param extractorClass 实现了ResultSetExtractable接口的数据提取操作类，
-     * 用于将ResultSet转储到自身（其populate方法返回this ），或转储到其他类型的对象（如ResultSet2Array）
-     * @param offset 数据查询的偏移值
-     * @param limit 数据查询的上界值。
-     * @return 返回查询结果,ArrayList中每条记录用Object保存
-     * @throws Exception 数据库操作例外
-     */
     public ArrayList<Object> query(String sql, Object[] parameters,
             Class<?> extractorClass, int offset, int limit) throws SQLException,
             InstantiationException, IllegalAccessException {
@@ -1129,18 +882,6 @@ public class DBAccess {
                 extractorClass);
     }
     
-    /**
-     * 该方法提供自定义查询语句，并需要提供相应的参数
-     * 
-     * @param sql 查询语句
-     * @param parameters 参数以Object[]传入，每个参数都不能为null.
-     * 参数传入前需用Integer.valueOf(int)将int转换为Integer， 用new Timestamp(calendar
-     * .getTimeInMillis())将Calendar转换为Timestamp，Date将会自动转换为Timestamp
-     * @param extractorClass 实现了ResultSetExtractable接口的数据提取操作类，
-     * 用于将ResultSet转储到自身（其populate方法返回this ），或转储到其他类型的对象（如ResultSet2Array）
-     * @return 返回查询结果,ArrayList中每条记录用Object保存
-     * @throws Exception 数据库操作例外
-     */
     public ArrayList<Object> query(String sql, Object[] parameters,
             Class<?> extractorClass) throws SQLException,
             InstantiationException, IllegalAccessException {
@@ -1173,8 +914,6 @@ public class DBAccess {
                 else if (extractorClass == ResultSet2Map.class)
                     obj = rs2Map.populate(rs);
                 else {
-                    // 如果extractor.populate(rs)返回this，则每一个rs都创建新的extractor实例来转储；
-                    // 如果extractor.populate(rs)返回新的对象，则总是用一个extractor为每一个rs作转储
                     if (extractor == null || obj == extractor) {
                         extractor = (ResultSetExtractable) extractorClass
                                 .newInstance();
@@ -1193,20 +932,6 @@ public class DBAccess {
         return records;
     }
     
-    /**
-     * 该方法提供具有便宜值和上界的自定义查询语句，并需要提供单一参数。
-     * 
-     * @param sql 查询语句
-     * @param fkeyValue 参数以long传入， 用new
-     * Timestamp(calendar.getTimeInMillis())将Calendar转换为Timestamp
-     * ，Date将会自动转换为Timestamp
-     * @param extractorClass 实现了ResultSetExtractable接口的数据提取操作类，
-     * 用于将ResultSet转储到自身（其populate方法返回this ），或转储到其他类型的对象（如ResultSet2Array）
-     * @param offset 数据查询的偏移值
-     * @param limit 数据查询的上界值。
-     * @return 返回查询结果,ArrayList中每条记录用Object保存
-     * @throws Exception 数据库操作例外
-     */
     public ArrayList<Object> query(String sql, long fkeyValue,
             Class<?> extractorClass, int offset, int limit) throws SQLException,
             InstantiationException, IllegalAccessException {
@@ -1217,18 +942,6 @@ public class DBAccess {
                 extractorClass);
     }
     
-    /**
-     * 该方法提供自定义查询语句，并需要提供单一参数
-     * 
-     * @param sql 查询语句
-     * @param fkeyValue 参数以long传入 用new
-     * Timestamp(calendar.getTimeInMillis())将Calendar转换为Timestamp
-     * ，Date将会自动转换为Timestamp
-     * @param extractorClass 实现了ResultSetExtractable接口的数据提取操作类，
-     * 用于将ResultSet转储到自身（其populate方法返回this ），或转储到其他类型的对象（如ResultSet2Array）
-     * @return 返回查询结果,ArrayList中每条记录用Object保存
-     * @throws Exception 数据库操作例外
-     */
     public ArrayList<Object> query(String sql, long fkeyValue,
             Class<?> extractorClass) throws SQLException,
             InstantiationException, IllegalAccessException {
@@ -1247,8 +960,6 @@ public class DBAccess {
                 else if (extractorClass == ResultSet2Map.class)
                     obj = rs2Map.populate(rs);
                 else {
-                    // 如果extractor.populate(rs)返回this，则每一个rs都创建新的extractor实例来转储；
-                    // 如果extractor.populate(rs)返回新的对象，则总是用一个extractor为每一个rs作转储
                     if (extractor == null || obj == extractor)
                         extractor = (ResultSetExtractable) extractorClass
                                 .newInstance();
@@ -1266,17 +977,6 @@ public class DBAccess {
         return records;
     }
     
-    /**
-     * 该方法通过id的list结构查找数据记录。
-     * 
-     * @param tableName 数据表名
-     * @param commaSepColStr 查找的列名
-     * @param idList 提供的id值
-     * @param extractorClass 实现了ResultSetExtractable接口的数据提取操作类，
-     * 用于将ResultSet转储到自身（其populate方法返回this ），或转储到其他类型的对象（如ResultSet2Array）
-     * @return 返回查询结果,ArrayList中每条记录用Object保存
-     * @throws Exception 数据库操作例外
-     */
     public ArrayList<Object> query(String tableName, String commaSepColStr,
             List<Long> idList, Class<?> extractorClass) throws SQLException,
             InstantiationException, IllegalAccessException {
@@ -1312,8 +1012,6 @@ public class DBAccess {
                 else if (extractorClass == ResultSet2Map.class)
                     obj = rs2Map.populate(rs);
                 else {
-                    // 如果extractor.populate(rs)返回this，则每一个rs都创建新的extractor实例来转储；
-                    // 如果extractor.populate(rs)返回新的对象，则总是用一个extractor为每一个rs作转储
                     if (extractor == null || obj == extractor)
                         extractor = (ResultSetExtractable) extractorClass
                                 .newInstance();
@@ -1331,18 +1029,6 @@ public class DBAccess {
         return records;
     }
     
-    /**
-     * 该方法通过自定义id名的查找数据记录。
-     * 
-     * @param tableName 数据表名
-     * @param commaSepColStr 查找的列名
-     * @param idName id的名字
-     * @param idList 提供的id值
-     * @param extractorClass 实现了ResultSetExtractable接口的数据提取操作类，
-     * 用于将ResultSet转储到自身（其populate方法返回this ），或转储到其他类型的对象（如ResultSet2Array）
-     * @return 返回查询结果,ArrayList中每条记录用Object保存
-     * @throws Exception 数据库操作例外
-     */
     public List<Object> query(String tableName, String commaSepColStr,
             String idName, List<Long> idList, Class<?> extractorClass)
             throws SQLException, InstantiationException,
@@ -1379,8 +1065,6 @@ public class DBAccess {
                 else if (extractorClass == ResultSet2Map.class)
                     obj = rs2Map.populate(rs);
                 else {
-                    // 如果extractor.populate(rs)返回this，则每一个rs都创建新的extractor实例来转储；
-                    // 如果extractor.populate(rs)返回新的对象，则总是用一个extractor为每一个rs作转储
                     if (extractor == null || obj == extractor)
                         extractor = (ResultSetExtractable) extractorClass
                                 .newInstance();
@@ -1398,18 +1082,6 @@ public class DBAccess {
         return records;
     }
     
-    /**
-     * 该方法提供多个或条件进行查询
-     * 
-     * @param tableName 表名
-     * @param commaSepColStr 查询的列名
-     * @param colName 或条件列名
-     * @param colValues 或条件列名值数组
-     * @param extractorClass 实现了ResultSetExtractable接口的数据提取操作类，
-     * 用于将ResultSet转储到自身（其populate方法返回this ），或转储到其他类型的对象（如ResultSet2Array）
-     * @return 返回查询结果,ArrayList中每条记录用Object保存
-     * @throws Exception 数据库操作例外
-     */
     public ArrayList<Object> query(String tableName, String commaSepColStr,
             String colName, Object[] colValues, Class<?> extractorClass)
             throws SQLException, InstantiationException,
@@ -1453,8 +1125,6 @@ public class DBAccess {
                 else if (extractorClass == ResultSet2Map.class)
                     obj = rs2Map.populate(rs);
                 else {
-                    // 如果extractor.populate(rs)返回this，则每一个rs都创建新的extractor实例来转储；
-                    // 如果extractor.populate(rs)返回新的对象，则总是用一个extractor为每一个rs作转储
                     if (extractor == null || obj == extractor)
                         extractor = (ResultSetExtractable) extractorClass
                                 .newInstance();
@@ -1472,28 +1142,11 @@ public class DBAccess {
         return records;
     }
     
-    /**
-     * 数据库表中的总记录数
-     * 
-     * @param sql 要执行的sql语句
-     * @return 表中的总记录数
-     * @throws Exception [参数说明]
-     */
     public int getRecordNumber(String sql) throws SQLException,
             InstantiationException, IllegalAccessException {
         return getRecordNumber(sql, null);
     }
     
-    /**
-     * 根据表名查询表中记录的总数
-     * 
-     * @param tableName 表名
-     * @return 表中的总记录数
-     * @throws Exception [参数说明]
-     * @return int [返回类型说明]
-     * @exception throws [违例类型] [违例说明]
-     * @see [类、类#方法、类#成员]
-     */
     public int getRecordNumberByName(String tableName) throws Exception {
         StringBuffer sql = new StringBuffer();
         sql.append("select count(*) from ");
@@ -1501,16 +1154,6 @@ public class DBAccess {
         return getRecordNumber(sql.toString(), null);
     }
     
-    /**
-     * 数据库表中的总记录数
-     * 
-     * @param sql 要执行的sql语句
-     * @param parameters 参数以Object[]传入，每个参数都不能为null.
-     * 参数传入前需用Integer.valueOf(int)将int转换为Integer， 用new Timestamp(calendar
-     * .getTimeInMillis())将Calendar转换为Timestamp，Date将会自动转换为Timestamp
-     * @return 表中的总记录数
-     * @throws Exception [参数说明]
-     */
     public int getRecordNumber(String sql, Object[] parameters)
             throws SQLException, InstantiationException,
             IllegalAccessException {
@@ -1547,19 +1190,6 @@ public class DBAccess {
         return result;
     }
     
-    /**
-     * 该方法提供自定义查询特定值的数据
-     * 
-     * @param sql 查询语句
-     * @param parameters 参数以Object[]传入，每个参数都不能为null.
-     * 参数传入前需用Integer.valueOf(int)将int转换为Integer， 用new Timestamp(calendar
-     * .getTimeInMillis())将Calendar转换为Timestamp，Date将会自动转换为Timestamp
-     * @param keyIdx 指定key在ResultSet中的序号
-     * @param extractorClass 实现了ResultSetExtractable接口的数据提取操作类，
-     * 用于将ResultSet转储到自身（其populate方法返回this ），或转储到其他类型的对象（如ResultSet2Array）
-     * @return 返回查询结果
-     * @throws Exception 数据库操作例外
-     */
     public HashMap<Object, List<Object>> query2Map(String sql,
             Object[] parameters, int keyIdx, Class<?> extractorClass,
             int offset, int limit) throws SQLException, InstantiationException,
@@ -1575,18 +1205,6 @@ public class DBAccess {
                 extractorClass);
     }
     
-    /**
-     * 该方法提供自定义查询特定值的数据
-     * 
-     * @param sql 查询语句
-     * @param parameters 参数以Object[]传入，每个参数都不能为null.
-     * 参数传入前需用Integer.valueOf(int)将int转换为Integer，
-     * @param keyIdx 指定key在ResultSet中的序号
-     * @param extractorClass 实现了ResultSetExtractable接口的数据提取操作类，
-     * 用于将ResultSet转储到自身（其populate方法返回this ），或转储到其他类型的对象（如ResultSet2Array）
-     * @return 返回查询结果
-     * @throws Exception 数据库操作例外
-     */
     public HashMap<Object, List<Object>> query2Map(String sql,
             Object[] parameters, int keyIdx, Class<?> extractorClass)
             throws SQLException, InstantiationException,
@@ -1619,8 +1237,6 @@ public class DBAccess {
                 else if (extractorClass == ResultSet2Map.class)
                     obj = rs2Map.populate(rs);
                 else {
-                    // 如果extractor.populate(rs)返回this，则每一个rs都创建新的extractor实例来转储；
-                    // 如果extractor.populate(rs)返回新的对象，则总是用一个extractor为每一个rs作转储
                     if (extractor == null || obj == extractor)
                         extractor = (ResultSetExtractable) extractorClass
                                 .newInstance();
@@ -1647,13 +1263,6 @@ public class DBAccess {
         return keyRecord;
     }
     
-    /**
-     * 该方法用于格式化信息
-     * 
-     * @param arrName 参数名
-     * @param arrMsg 参数值
-     * @return 格式化后的信息
-     */
     public static String formatMsg(String[] arrName, Object[] arrMsg) {
         StringBuffer buf = new StringBuffer();
         for (int i = 0; i < arrName.length; i++) {

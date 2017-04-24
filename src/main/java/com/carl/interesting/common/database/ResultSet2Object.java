@@ -5,9 +5,9 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 /**
- * 该类继承于ResultSetExtractable，用不同的方式处理查询结果集
+ * result set convert to object
  * 
- * @author Yangbin Zhang
+ * @author Carl Liu
  * @version [version, 7 Apr 2016]
  * @see [about class/method]
  * @since [product/module version]

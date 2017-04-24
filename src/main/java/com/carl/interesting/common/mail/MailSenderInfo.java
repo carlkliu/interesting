@@ -13,41 +13,49 @@ import org.dom4j.io.SAXReader;
 import com.carl.interesting.common.util.ConfigHelper;
 import com.carl.interesting.common.util.LogUtil;
 
-
 /**
- * 发送邮件需要使用的基本信息类
+ * mail information
  * 
- * @author yue ren
+ * @author Carl Liu
+ * @version [version, 24 April 2017]
+ * @see [about class/method]
+ * @since [product/module version]
  */
 public class MailSenderInfo {
     private static final Log LOG = LogFactory.getLog(MailSenderInfo.class);
     
     /**
-     * 发送邮件的服务器的IP和端口
+     * send mail host
      */
     private String mailServerHost = "";
     
+    /**
+     * send mail port
+     */
     private String mailServerPort = "";
     
     /**
-     * 邮件发送者的地址
+     * send mail address
      */
     private String fromAddress = "";
     
     /**
-     * 邮件接收者的地址
+     * receive mail addresses
      */
     private String toAddress;
     
     /**
-     * 登陆邮件发送服务器的用户名和密码
+     * send mail user name
      */
     private String userName = "";
     
+    /**
+     * send mail password
+     */
     private String password = "";
     
     /**
-     * 是否需要身份验证
+     * is validate
      */
     private boolean validate = true;
     
@@ -57,17 +65,17 @@ public class MailSenderInfo {
     private boolean validateSsl = false;
     
     /**
-     * 邮件主题
+     * mail subject
      */
     private String subject;
     
     /**
-     * /邮件的文本内容
+     * mail content
      */
     private String content;
     
     /**
-     * 邮件附件的文件名
+     * mail attachments
      */
     private String[] attachFileNames;
     

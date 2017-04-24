@@ -12,9 +12,9 @@ import net.sf.json.JSON;
 import net.sf.json.JSONObject;
 
 /**
- * Utils for build common request and response
+ * deal response data
  * 
- * @author xupingzheng
+ * @author Carl Liu
  * @version [version, 16 Aug 2016]
  * @see [about class/method]
  * @since [product/module version]

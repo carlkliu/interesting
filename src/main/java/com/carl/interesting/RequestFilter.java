@@ -27,7 +27,7 @@ import com.carl.interesting.common.session.CustomSessionManagement;
  * Filter http request and valid session
  * 
  * @author Jiaqi Yang
- * @version [version, 2016年9月1日]
+ * @version [version, 1 Sep 2016]
  * @see [about class/method]
  * @since [product/module version]
  */

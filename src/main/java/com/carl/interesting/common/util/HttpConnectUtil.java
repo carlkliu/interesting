@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 import net.sf.json.JSONObject;
 
 /**
- * communicate by HTTP protocol util
+ * communicate by HTTP protocol utility
  * 
  * @author Carl Liu
  * @version [version, 29 Mar 2016]

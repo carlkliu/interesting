@@ -3,7 +3,7 @@ package com.carl.interesting.common.exception;
 /**
  * Data access custom exception
  * 
- * @author template
+ * @author Carl Liu
  * @version [version, 16 Jun 2016]
  * @see [about class/method]
  * @since [product/module version]

@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.carl.interesting.common.InputDataFormatValidation;
 import com.carl.interesting.common.ServiceResult;
-import com.carl.interesting.common.constants.FlagEnum;
 import com.carl.interesting.common.constants.KeyConstant;
 import com.carl.interesting.common.constants.LanguageKeys;
 import com.carl.interesting.common.constants.ResponseFrontEndErrorCode;
@@ -16,25 +15,21 @@ import com.carl.interesting.user.service.UserServiceImpl;
 import net.sf.json.JSONObject;
 
 /**
- * login service class
+ * login service
  * 
- * @author Yangbin Zhang
+ * @author Carl Liu
  * @version [version, 1 Aug 2016]
  * @see [about class/method]
  * @since [product/module version]
  */
 public class LoginServiceImpl {
-    /**
-     * user login
-     * 
-     * @param username
-     * @param password
-     * @return [explain parameter]
-     * @return JSONObject [explain return type]
-     * @exception throws [exception type] [explain exception]
-     * @see [class,class#method,class#member]
-     */
+    
     private static LoginServiceImpl loginServiceImpl;
+    
+    /**
+     * single user login in multisite flag
+     */
+    private static final String NO = "no";
     
     UserServiceImpl userService = UserServiceImpl.getInstance();
     
@@ -127,8 +122,7 @@ public class LoginServiceImpl {
             LoginInfoCache.getInstance().put(username, ipValue);
         }
         else {
-            if (FlagEnum.NO.getString().equals(
-                    ConfigHelper.get(KeyConstant.MULTIPOINT_LOGIN))) {
+            if (NO.equals(ConfigHelper.get(KeyConstant.MULTIPOINT_LOGIN))) {
                 LoginInfoCache.getInstance().put(username, ipValue);
             }
             else {

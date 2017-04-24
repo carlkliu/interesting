@@ -12,7 +12,7 @@ import com.carl.interesting.common.constants.LanguageKeys;
 /**
  * provide i18n api
  * 
- * @author zhangjie
+ * @author Carl Liu
  * @version [version, 12 Aug 2016]
  * @see [about class/method]
  * @since [product/module version]

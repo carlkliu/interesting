@@ -18,7 +18,7 @@ import com.carl.interesting.common.util.LogUtil;
  * Thread for communicating with external.
  * 
  * @author xupingzheng
- * @version [version, 2016年4月13日]
+ * @version [version, 13 Apr 2016]
  * @see [about class/method]
  * @since [product/module version]
  */
