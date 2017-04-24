@@ -1,0 +1,12 @@
+[Unit]
+Description=interesting
+After=syslog.target network.target
+ 
+[Service]
+Type=forking
+ExecStart=/usr/local/bin/ing start 
+ExecStop=/usr/local/bin/ing stop 
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target

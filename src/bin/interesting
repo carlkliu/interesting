@@ -1,0 +1,162 @@
+#!/bin/bash
+#
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# 
+# The ING command script
+#
+# Environment Variables
+#
+#   ING_JAVA_HOME The java implementation to use.  Overrides JAVA_HOME.
+#
+#   ING_HEAPSIZE  The maximum amount of heap to use, in MB. 
+#                   Default is 1000.
+#
+#   ING_OPTS      Extra Java runtime options.
+#                   Multiple options must be separated by white space.
+#
+#   ING_LOG_DIR   Log directory (default: $ING_HOME/logs)
+#
+#   ING_LOGFILE   Log file (default: snapshot.log)
+#
+#   ING_CONF_DIR  Path(s) to configuration files (default: $ING_HOME/conf).
+#                   Multiple paths must be separated by a colon ':'.
+#
+# resolve links - $0 may be a softlink
+THIS="$0"
+while [ -h "$THIS" ]; do
+  ls=`ls -ld "$THIS"`
+  link=`expr "$ls" : '.*-> \(.*\)$'`
+  if expr "$link" : '.*/.*' > /dev/null; then
+    THIS="$link"
+  else
+    THIS=`dirname "$THIS"`/"$link"
+  fi
+done
+
+
+
+function print_help_message()
+{
+    echo "ING 0.1-ING"
+    echo "Usage: ING COMMAND"
+    echo "where COMMAND is one of:"
+    echo "  start [-p port] [-dp debugport]   #start ING server"
+    echo "  stop                              #stop  ING server"
+    exit 1
+}
+
+
+# if no args specified, show usage
+if [ $# = 0 ]; then
+    print_help_message
+fi
+
+# run vm on the port
+ING_PORT=""
+
+# some directories
+THIS_DIR="`dirname "$THIS"`"
+ING_HOME="`cd "$THIS_DIR/.." ; pwd`"
+
+# run vm with jdwp
+DEBUG_PORT=`cat $ING_HOME/conf/interesting.properties | grep debug.port | awk '{split($1, arr, "=");print(arr[2])}'`
+
+# parse params
+COMMAND=$1
+ACTION=$1
+case "$COMMAND" in
+    "start" )
+        CLASS=com.carl.interesting.StartINGServer
+        while [ "$COMMAND" != "" ];do
+            case "$COMMAND" in
+            "-dp" )
+                shift
+                DEBUG_PORT=$1
+                     ;;
+            "-p" )
+                shift
+                ING_PORT=$1
+                      ;;
+            esac
+            shift
+            COMMAND=$1
+        done
+       ;;
+     "stop" )
+        DEBUG_PORT=""
+        CLASS=com.carl.interesting.StopINGServer
+       ;;
+     "-h" | "--help" )
+        print_help_message
+       ;;
+     * )
+        echo "No command found "
+        print_help_message
+     ;;
+esac
+
+
+
+# some Java parameters
+JAVA_HOME="/usr/java/jdk1.7.0_67"
+
+
+JAVA="$JAVA_HOME/bin/java"
+JAVA_HEAP_MAX=-Xmx1024m 
+
+# check envvars which might override default args
+if [ "$ING_HEAPSIZE" != "" ]; then
+  echo "run with heapsize $ING_HEAPSIZE"
+  JAVA_HEAP_MAX="-Xmx""$ING_HEAPSIZE""m"
+fi
+
+
+# set JAVA_OPTS
+if [ "$DEBUG_PORT" == "" ];then
+    JAVA_OPTS="$JAVA_HEAP_MAX"
+else
+    JAVA_OPTS="$JAVA_HEAP_MAX -Xdebug -Xrunjdwp:transport=dt_socket,address=$DEBUG_PORT,server=y,suspend=n"
+fi
+echo "Using JAVA_OPTS are $JAVA_OPTS"
+
+
+# CLASSPATH initially contains $NUTCH_CONF_DIR, or defaults to $NUTCH_HOME/conf
+CLASSPATH="${ING_CONF_DIR:=$ING_HOME/conf}"
+
+# add libs to CLASSPATH
+for f in "$ING_HOME"/lib/*.jar; do
+  CLASSPATH="${CLASSPATH}:$f";
+done
+
+# default log directory & file
+if [ "$ING_LOG_DIR" = "" ]; then
+  ING_LOG_DIR="$ING_HOME/logs"
+fi
+ING_OPTS=($ING_OPTS -Ding.home="$ING_HOME")
+
+case "$ACTION" in
+    "start" )
+        echo "start ING JVM"
+        ;;
+    "stop" )
+        echo "stop ING JVM"
+        ;;
+esac
+
+"$JAVA" $JAVA_OPTS "${ING_OPTS[@]}" -classpath "$CLASSPATH" "$CLASS" "$@" &
+# run it
+
+exit 0
